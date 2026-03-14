@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "hashConfig": {
+    "handlerHashLength": 5,
+    "styleHashLength": 5
+  },
+  "files": {
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/mvp/main.tsx": {
+      "mtimeMs": 1773495399469,
+      "externalImports": [],
+      "handlers": {
+        "clickHandler": "clickHandler_2d49c"
+      },
+      "styles": {
+        "buttonStyle": "buttonStyle_230fe"
+      }
+    }
+  }
+}
