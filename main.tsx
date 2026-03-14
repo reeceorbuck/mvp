@@ -10,7 +10,7 @@ const clientTools = new ClientTools(import.meta.url, {
   },
   styles: {
     buttonStyle: css`
-      background: #1eff00;
+      background: #ff00c8;
       color: white;
     `,
   },

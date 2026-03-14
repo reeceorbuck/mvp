@@ -6,13 +6,19 @@
   },
   "files": {
     "file:///C:/Users/Reece/Documents/Projects/tinyTools/mvp/main.tsx": {
-      "mtimeMs": 1773495399469,
+      "mtimeMs": 1773499478779,
       "externalImports": [],
       "handlers": {
-        "clickHandler": "clickHandler_2d49c"
+        "clickHandler": [
+          "clickHandler_5369f",
+          "clickHandler_2d49c"
+        ]
       },
       "styles": {
-        "buttonStyle": "buttonStyle_230fe"
+        "buttonStyle": [
+          "buttonStyle_16328",
+          "buttonStyle_230fe"
+        ]
       }
     }
   }
