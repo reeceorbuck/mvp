@@ -1,23 +1,29 @@
 {
-  "version": 2,
+  "version": 3,
   "hashConfig": {
     "handlerHashLength": 5,
     "styleHashLength": 5
   },
   "files": {
     "file:///C:/Users/Reece/Documents/Projects/tinyTools/mvp/main.tsx": {
-      "mtimeMs": 1773499478779,
+      "mtimeMs": 1773727256827,
       "externalImports": [],
       "handlers": {
         "clickHandler": [
-          "clickHandler_5369f",
-          "clickHandler_2d49c"
+          "clickHandler_74eff",
+          "clickHandler_7eb61"
+        ],
+        "basic": [
+          "basic_40156"
         ]
       },
       "styles": {
         "buttonStyle": [
-          "buttonStyle_16328",
-          "buttonStyle_230fe"
+          "buttonStyle_2fa83",
+          "buttonStyle_4341a"
+        ],
+        "headerStyle": [
+          "headerStyle_5827a"
         ]
       }
     }
