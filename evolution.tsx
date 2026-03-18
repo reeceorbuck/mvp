@@ -1,11 +1,10 @@
 import { Hono } from "hono";
-import { tiny } from "@tinytools/hono-tools";
+import { css, tiny } from "@tinytools/hono-tools";
 
-const layoutStyles = new tiny.Styles(import.meta.url, {
-  headerStyle: tiny.css`
-    background: oklch(70% 90% 200);
-    color: white;
-  `,
+const sharedHandlersExample = new tiny.Handlers(import.meta.url, {
+  logTimestamp: function () {
+    console.log("timestamp: ", Temporal.Now.plainDateTimeISO().toString());
+  },
 });
 
 const routeStyles = new tiny.Styles(import.meta.url, {
@@ -14,7 +13,17 @@ const routeStyles = new tiny.Styles(import.meta.url, {
     background: oklch(70% 90% var(--hue));
     color: white;
   `,
+  headerStyle: css`
+    background: oklch(70% 90% 200);
+    color: white;
+  `,
 });
+
+const _globalStylesExample = new tiny.Styles(import.meta.url, {
+  testStyle: tiny.css`
+    color: red;
+  `,
+}, { global: true });
 
 const routeHandlers = new tiny.Handlers(import.meta.url, {
   clickHandler: function (
@@ -26,16 +35,34 @@ const routeHandlers = new tiny.Handlers(import.meta.url, {
     this.dataset.hue = (Math.random() * 360).toFixed(0) + "deg";
     this.textContent =
       `clicked at ${Temporal.Now.plainDateTimeISO().toString()}`;
+    logTimestamp();
   },
   basic: function () {
     console.log("Basic function called");
   },
+}, {
+  imports: [sharedHandlersExample],
 });
+
+const testStyleTools = new tiny.Styles(import.meta.url, {
+  buttonStyle: css`
+    background: oklch(78% 0.18 155);
+    color: white;
+  `,
+});
+
+const testHandlerTools = new tiny.Handlers(import.meta.url, {
+  testHandler: function (this: HTMLButtonElement) {
+    this.textContent = "Test route clicked";
+  },
+});
+
+const { logTimestamp } = routeHandlers.getFunctionReferences;
 
 const app = new Hono()
   .use(...tiny.middleware.core())
   .use(tiny.middleware.layout(async ({ children }) => {
-    const { styled } = await tiny.imports(layoutStyles);
+    const { styled } = await tiny.imports(routeStyles);
     return (
       <div>
         <h1 class={styled.headerStyle}>MVP Layout</h1>
@@ -54,6 +81,19 @@ app.get("/", async (c) => {
       onClick={fn.clickHandler}
     >
       {`Loaded at ${Temporal.Now.plainDateTimeISO().toString()}`}
+    </button>,
+  );
+});
+
+app.get("/test", async (c) => {
+  const { fn, styled } = await tiny.imports(testHandlerTools, testStyleTools);
+  return c.render(
+    <button
+      type="button"
+      class={styled.buttonStyle}
+      onClick={fn.testHandler}
+    >
+      Test Button
     </button>,
   );
 });

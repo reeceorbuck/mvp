@@ -7,7 +7,7 @@
   },
   "compilerOptions": {
     "jsx": "precompile",
-    "jsxImportSource": "@tiny-tools/hono",
+    "jsxImportSource": "@tinytools/hono-tools",
     "lib": [
       "deno.window",
       "deno.unstable",
