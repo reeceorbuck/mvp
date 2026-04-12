@@ -58,4 +58,4 @@ app.get("/", async (c) => {
   );
 });
 
-Deno.serve({ port: 3032 }, app.fetch);
+export { app };
