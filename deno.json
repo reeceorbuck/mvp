@@ -1,6 +1,9 @@
 {
   "tasks": {
-    "dev": "deno run --watch -A main.tsx"
+    "dev": "deno run --watch -A serve.ts --lazy",
+    "build": "deno run -A build.ts",
+    "serve": "deno run -A serve.ts",
+    "fresh": "deno run -A fresh.ts && deno task serve"
   },
   "imports": {
     "hono": "jsr:@hono/hono@^4.12.7"
