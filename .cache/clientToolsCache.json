@@ -25,6 +25,26 @@
           "buttonStyle_fa2dc"
         ]
       }
+    },
+    "file:///C:/Users/reece/Projects/monorepo/mvp/main.tsx": {
+      "mtimeMs": 1775871983323,
+      "externalImports": [],
+      "handlers": {
+        "clickHandler": [
+          "clickHandler_5cff8"
+        ],
+        "basic": [
+          "basic_18322"
+        ]
+      },
+      "styles": {
+        "headerStyle": [
+          "headerStyle_ba3cf"
+        ],
+        "buttonStyle": [
+          "buttonStyle_1623b"
+        ]
+      }
     }
   }
 }
