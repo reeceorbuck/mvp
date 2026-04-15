@@ -1,7 +1,7 @@
 // Wipe existing cache and built handler/style files, then rebuild from scratch.
 
-import { logStartupPerformanceSummary } from "@tinytools/hono-tools";
-import { buildScriptFiles } from "@tinytools/hono-tools/build";
+import { logStartupPerformanceSummary } from "tinytools";
+import { buildScriptFiles } from "tinytools/build";
 import "./main.tsx";
 
 const dirs = ["./.cache", "./public/handlers", "./public/styles"];

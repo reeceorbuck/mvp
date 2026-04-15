@@ -6,11 +6,12 @@
     "fresh": "deno run -A fresh.ts && deno task serve"
   },
   "imports": {
-    "hono": "jsr:@hono/hono@^4.12.7"
+    "tinytools": "jsr:@tinytools/hono-tools@^0.1.14",
+    "hono": "jsr:@hono/hono@^4.12.12"
   },
   "compilerOptions": {
     "jsx": "precompile",
-    "jsxImportSource": "@tinytools/hono-tools",
+    "jsxImportSource": "tinytools",
     "lib": [
       "deno.window",
       "deno.unstable",

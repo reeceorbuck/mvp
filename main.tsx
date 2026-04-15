@@ -1,5 +1,4 @@
-import { Hono } from "hono";
-import { tiny } from "@tinytools/hono-tools";
+import { tiny } from "tinytools";
 
 const layoutStyles = new tiny.Styles(import.meta.url, {
   headerStyle: tiny.css`
@@ -32,8 +31,7 @@ const routeHandlers = new tiny.Handlers(import.meta.url, {
   },
 });
 
-const app = new Hono()
-  .use(...tiny.middleware.core())
+const app = new tiny.Hono({ tools: "core" })
   .use(tiny.middleware.layout(async ({ children }) => {
     const { styled } = await tiny.imports(layoutStyles);
     return (

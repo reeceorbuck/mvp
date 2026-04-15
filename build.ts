@@ -1,5 +1,5 @@
-import { logStartupPerformanceSummary } from "@tinytools/hono-tools";
-import { buildScriptFiles } from "@tinytools/hono-tools/build";
+import { logStartupPerformanceSummary } from "tinytools";
+import { buildScriptFiles } from "tinytools/build";
 import "./main.tsx";
 
 await buildScriptFiles();
