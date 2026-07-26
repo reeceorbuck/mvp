@@ -6,8 +6,8 @@
     "fresh": "deno run -A fresh.ts && deno task serve"
   },
   "imports": {
-    "tinytools": "jsr:@tinytools/hono-tools@^0.1.23",
-    "hono": "jsr:@hono/hono@^4.12.12"
+    "tinytools": "jsr:@tinytools/hono-tools@^0.1.36",
+    "hono": "jsr:@hono/hono@^4.12.32"
   },
   "compilerOptions": {
     "jsx": "precompile",
