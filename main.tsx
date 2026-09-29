@@ -1,4 +1,7 @@
+import { Hono } from "hono";
 import { tiny } from "tinytools";
+import { UpgradeCustomElement } from "@tinytools/hono-tools/components";
+import { signalTools } from "tinytools/handlers";
 
 const layoutStyles = new tiny.Styles(import.meta.url, {
   headerStyle: tiny.css`
@@ -15,44 +18,74 @@ const routeStyles = new tiny.Styles(import.meta.url, {
   `,
 });
 
-const routeHandlers = new tiny.Handlers(import.meta.url, {
-  clickHandler: function (
-    this: HTMLButtonElement,
-    ev: MouseEvent,
-  ) {
-    console.log("clicked this: ", this);
-    console.log("clicked ev: ", ev);
-    this.dataset.hue = (Math.random() * 360).toFixed(0) + "deg";
-    this.textContent =
-      `clicked at ${Temporal.Now.plainDateTimeISO().toString()}`;
-  },
-  basic: function () {
-    console.log("Basic function called");
-  },
+const routeHandlers = new tiny.Handlers(import.meta.url, async () => {
+  const { signal } = await tiny.imports(routeSignals);
+  return {
+    clickHandler: function (
+      this: HTMLButtonElement,
+      ev: MouseEvent,
+    ) {
+      console.log("clicked this: ", this);
+      console.log("clicked ev: ", ev);
+      this.dataset.hue = (Math.random() * 360).toFixed(0) + "deg";
+      this.textContent =
+        `clicked at ${Temporal.Now.plainDateTimeISO().toString()}`;
+    },
+    setCount: function (
+      this: HTMLButtonElement,
+    ) {
+      signal.count().value = (Number(signal.count().value || 0)) +
+        Number(this.value || 0);
+    },
+  };
 });
 
-const app = new tiny.Hono({ tools: "core" })
-  .use(tiny.middleware.layout(async ({ children }) => {
+const routeSignals = new tiny.Signals(
+  import.meta.url,
+  ({ Signal }) => {
+    return {
+      count: new Signal(),
+    };
+  },
+);
+
+const app = new Hono()
+  .use(...tiny.middleware.core())
+  .use(tiny.middleware.layout(async ({ children }, _c) => {
     const { styled } = await tiny.imports(layoutStyles);
     return (
-      <div>
+      <body>
         <h1 class={styled.headerStyle}>MVP Layout</h1>
         <main>{children}</main>
-      </div>
+      </body>
     );
   }));
 
 app.get("/", async (c) => {
-  const { fn, styled } = await tiny.imports(routeStyles, routeHandlers);
+  const { fn, styled, signal } = await tiny.imports(
+    routeStyles,
+    routeHandlers,
+    routeSignals,
+    signalTools,
+  );
   return c.render(
-    <button
-      type="button"
-      data-hue={(Math.random() * 360).toFixed(0) + "deg"}
-      class={styled.buttonStyle}
-      onClick={fn.clickHandler}
-    >
-      {`Loaded at ${Temporal.Now.plainDateTimeISO().toString()}`}
-    </button>,
+    <>
+      <button
+        type="button"
+        data-hue={(Math.random() * 360).toFixed(0) + "deg"}
+        class={styled.buttonStyle}
+        onClick={fn.clickHandler}
+      >
+        {`Loaded at ${Temporal.Now.plainDateTimeISO().toString()}`}
+      </button>
+      <UpgradeCustomElement>
+        <display-count onLoad={signal.count} onSignal={fn.setTextContent}>
+          0
+        </display-count>
+      </UpgradeCustomElement>
+      <button type="button" value="1" onClick={fn.setCount}>+</button>
+      <button type="button" value="-1" onClick={fn.setCount}>-</button>
+    </>,
   );
 });
 
