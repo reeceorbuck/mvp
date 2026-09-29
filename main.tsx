@@ -34,7 +34,7 @@ const routeHandlers = new tiny.Handlers(import.meta.url, async () => {
     setCount: function (
       this: HTMLButtonElement,
     ) {
-      signal.count().value = (Number(signal.count().value || 0)) +
+      signal.count.value = (Number(signal.count.value || 0)) +
         Number(this.value || 0);
     },
   };

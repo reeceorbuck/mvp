@@ -1,40 +1,118 @@
 {
-  "version": 3,
+  "version": 4,
   "hashConfig": {
     "handlerHashLength": 5,
     "styleHashLength": 5,
     "hashAlgorithm": 2
   },
   "files": {
-    "main.tsx": {
-      "mtimeMs": 1790565490232,
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/routeCacheTools.ts": {
+      "mtimeMs": 0,
       "externalImports": [],
       "handlers": {
-        "clickHandler": [
-          "clickHandler_0ee3c"
-        ],
-        "basic": [
-          "basic_8205d"
-        ],
-        "__tinySignalGraph::factory:2::store-v1": [
-          "__tinySignalGraph_8899a"
-        ],
-        "count::factory:1::store-v1": [
-          "count_b1329"
-        ],
-        "clickHandler::factory:0": [
-          "clickHandler_485fd"
-        ],
-        "setCount::factory:0": [
-          "setCount_b8927"
-        ],
-        "__tinySignalGraph::factory:1::store-v1": [
-          "__tinySignalGraph_1b158"
-        ],
-        "count::factory:2": [
-          "count_1282f"
+        "#bundle": [
+          "routeCacheTools_a136f"
         ]
       },
+      "styles": {}
+    },
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/components/ActivateOnLoadHandler.tsx": {
+      "mtimeMs": 0,
+      "externalImports": [],
+      "handlers": {
+        "#bundle": [
+          "ActivateOnLoadHandler_17b64",
+          "ActivateOnLoadHandler_7c709",
+          "ActivateOnLoadHandler_dc459",
+          "ActivateOnLoadHandler_95973"
+        ]
+      },
+      "styles": {}
+    },
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/navigationUrlTools.ts": {
+      "mtimeMs": 0,
+      "externalImports": [],
+      "handlers": {
+        "#bundle": [
+          "navigationUrlTools_163d6"
+        ]
+      },
+      "styles": {}
+    },
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/processIncomingData.ts": {
+      "mtimeMs": 0,
+      "externalImports": [],
+      "handlers": {
+        "#bundle": [
+          "processIncomingData_1a71c"
+        ]
+      },
+      "styles": {}
+    },
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/clientRouteTools.ts": {
+      "mtimeMs": 0,
+      "externalImports": [],
+      "handlers": {
+        "#bundle": [
+          "clientRouteTools_a3a07"
+        ]
+      },
+      "styles": {}
+    },
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/partialInsertHandlers.ts": {
+      "mtimeMs": 0,
+      "externalImports": [],
+      "handlers": {
+        "#bundle": [
+          "partialInsertHandlers_9119f"
+        ]
+      },
+      "styles": {}
+    },
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/components/NewPartial.tsx": {
+      "mtimeMs": 0,
+      "externalImports": [],
+      "handlers": {
+        "#bundle": [
+          "NewPartial_4b750"
+        ]
+      },
+      "styles": {}
+    },
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/honoFactory.tsx": {
+      "mtimeMs": 0,
+      "externalImports": [],
+      "handlers": {
+        "#bundle": [
+          "honoFactory_d4665"
+        ]
+      },
+      "styles": {}
+    },
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/signals.ts": {
+      "mtimeMs": 0,
+      "externalImports": [],
+      "handlers": {
+        "#bundle": [
+          "signals_6275a"
+        ]
+      },
+      "styles": {}
+    },
+    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/queryParams.ts": {
+      "mtimeMs": 0,
+      "externalImports": [],
+      "handlers": {
+        "#bundle": [
+          "queryParams_79a22"
+        ]
+      },
+      "styles": {}
+    },
+    "main.tsx": {
+      "mtimeMs": 0,
+      "externalImports": [],
+      "handlers": {},
       "styles": {
         "headerStyle": [
           "headerStyle_fb49d"
@@ -44,208 +122,12 @@
         ]
       }
     },
-    "file:///C:/Users/reece/Projects/monorepo/mvp/main.tsx": {
-      "mtimeMs": 1775871983323,
-      "externalImports": [],
-      "handlers": {
-        "clickHandler": [
-          "clickHandler_5cff8"
-        ],
-        "basic": [
-          "basic_18322"
-        ]
-      },
-      "styles": {
-        "headerStyle": [
-          "headerStyle_ba3cf"
-        ],
-        "buttonStyle": [
-          "buttonStyle_1623b"
-        ]
-      }
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/routeCacheTools.ts": {
-      "mtimeMs": 0,
-      "externalImports": [],
-      "handlers": {
-        "observeRouteCache": [
-          "observeRouteCache_1ab56"
-        ]
-      },
-      "styles": {}
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/components/ActivateOnLoadHandler.tsx": {
-      "mtimeMs": 1790604210672,
-      "externalImports": [],
-      "handlers": {
-        "referOnLoadOnce": [
-          "referOnLoadOnce_36f7c"
-        ],
-        "referOnLoad": [
-          "referOnLoad_5a939"
-        ],
-        "referOnSuspend": [
-          "referOnSuspend_bfa74"
-        ],
-        "referOnConnect": [
-          "referOnConnect_26f2f"
-        ],
-        "buildTemplate": [
-          "buildTemplate_a304c"
-        ],
-        "loadTextArea": [
-          "loadTextArea_7d089"
-        ],
-        "passLoadEvent": [
-          "passLoadEvent_187f9"
-        ],
-        "upgradePrecedingCustomElement": [
-          "upgradePrecedingCustomElement_66c57"
-        ],
-        "testSuspension": [
-          "testSuspension_ddd91"
-        ]
-      },
-      "styles": {}
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/navigationUrlTools.ts": {
-      "mtimeMs": 0,
-      "externalImports": [],
-      "handlers": {
-        "parseNavigationUrls": [
-          "parseNavigationUrls_8536a"
-        ]
-      },
-      "styles": {}
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/processIncomingData.ts": {
-      "mtimeMs": 0,
-      "externalImports": [],
-      "handlers": {
-        "processIncomingData": [
-          "processIncomingData_86fe1"
-        ]
-      },
-      "styles": {}
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/clientRouteTools.ts": {
-      "mtimeMs": 0,
-      "externalImports": [],
-      "handlers": {
-        "interpolateClientRouteValue": [
-          "interpolateClientRouteValue_de44f"
-        ]
-      },
-      "styles": {}
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/partialInsertHandlers.ts": {
-      "mtimeMs": 0,
-      "externalImports": [],
-      "handlers": {
-        "partialReplace": [
-          "partialReplace_2f08b"
-        ],
-        "partialBlast": [
-          "partialBlast_18f4a"
-        ],
-        "partialMergeContent": [
-          "partialMergeContent_adf02"
-        ],
-        "partialDelete": [
-          "partialDelete_bfe46"
-        ]
-      },
-      "styles": {}
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/components/NewPartial.tsx": {
-      "mtimeMs": 0,
-      "externalImports": [],
-      "handlers": {
-        "passLoadEvent": [
-          "passLoadEvent_d031d"
-        ]
-      },
-      "styles": {}
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/honoFactory.tsx": {
-      "mtimeMs": 1790435693389,
-      "externalImports": [],
-      "handlers": {
-        "importIntoHead": [
-          "importIntoHead_273a8"
-        ],
-        "cacheRoute": [
-          "cacheRoute_e4693"
-        ]
-      },
-      "styles": {}
-    },
     "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/signals.ts": {
-      "mtimeMs": 1790603137705,
-      "externalImports": [],
-      "handlers": {
-        "__tinySignalTools::factory:0": [
-          "__tinySignalTools_025e3"
-        ]
-      },
-      "styles": {}
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/dental/handlers/signals.ts": {
-      "mtimeMs": 1790496745097,
-      "externalImports": [],
-      "handlers": {
-        "createSignal": [
-          "createSignal_8f2db"
-        ],
-        "handleSignalEvent": [
-          "handleSignalEvent_57f29"
-        ],
-        "effect": [
-          "effect_2d9da"
-        ],
-        "setTextContent": [
-          "setTextContent_d6442"
-        ],
-        "setValue": [
-          "setValue_7611e"
-        ],
-        "setCssProperty": [
-          "setCssProperty_c0caa"
-        ]
-      },
-      "styles": {}
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/signals.ts": {
-      "mtimeMs": 1790603196983,
-      "externalImports": [],
-      "handlers": {
-        "createSignal": [
-          "createSignal_149a4"
-        ],
-        "handleSignalEvent": [
-          "handleSignalEvent_8cb16"
-        ],
-        "effect": [
-          "effect_4cf73"
-        ],
-        "setTextContent": [
-          "setTextContent_c63f5"
-        ],
-        "setValue": [
-          "setValue_c5ef9"
-        ],
-        "setCssProperty": [
-          "setCssProperty_5a435"
-        ]
-      },
-      "styles": {}
-    },
-    "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/queryParams.ts": {
       "mtimeMs": 0,
       "externalImports": [],
       "handlers": {
-        "queryParamChanges": [
-          "queryParamChanges_1ac6f"
+        "#bundle": [
+          "signals_ee5ce"
         ]
       },
       "styles": {}
