@@ -44,7 +44,7 @@ const routeSignals = new tiny.Signals(
   import.meta.url,
   ({ Signal }) => {
     return {
-      count: new Signal(),
+      count: new Signal<number>(0),
     };
   },
 );
