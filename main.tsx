@@ -1,6 +1,5 @@
 import { Hono } from "hono";
 import { tiny } from "tinytools";
-import { UpgradeCustomElement } from "@tinytools/hono-tools/components";
 import { signalTools } from "tinytools/handlers";
 
 const layoutStyles = new tiny.Styles(import.meta.url, {
@@ -78,11 +77,9 @@ app.get("/", async (c) => {
       >
         {`Loaded at ${Temporal.Now.plainDateTimeISO().toString()}`}
       </button>
-      <UpgradeCustomElement>
-        <display-count onLoad={signal.count} onSignal={fn.setTextContent}>
-          0
-        </display-count>
-      </UpgradeCustomElement>
+      <display-count onConnect={signal.count} onSignal={fn.setTextContent}>
+        0
+      </display-count>
       <button type="button" value="1" onClick={fn.setCount}>+</button>
       <button type="button" value="-1" onClick={fn.setCount}>-</button>
     </>,
