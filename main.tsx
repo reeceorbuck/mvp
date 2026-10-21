@@ -90,7 +90,7 @@ const routeSignals = new tiny.Signals(
     const hovered = new Trigger();
     return {
       count,
-      isEven: new Computed(() => count.value % 2 === 0, [count]),
+      isEven: new Computed(() => count.value % 2 === 0),
       hovered,
       hue: new Computed(() => (Math.random() * 360).toFixed(0) + "deg", [
         hovered,
