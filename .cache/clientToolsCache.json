@@ -92,11 +92,11 @@
       "styles": {}
     },
     "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/handlers/signals.ts": {
-      "mtimeMs": 1792552018994,
+      "mtimeMs": 1792555619508,
       "externalImports": [],
       "handlers": {
         "#bundle": [
-          "signals_0638d",
+          "signals_73647",
           "signals_57c52"
         ]
       },
@@ -113,14 +113,14 @@
       "styles": {}
     },
     "main.tsx": {
-      "mtimeMs": 1792548962061,
+      "mtimeMs": 1792562294683,
       "externalImports": [],
       "handlers": {
         "#bundle": [
           null,
           null,
-          "main_e1046",
-          "main_5132a"
+          "main_c442b",
+          "main_d87d6"
         ]
       },
       "styles": {
@@ -135,15 +135,18 @@
         ],
         "incrementStyle": [
           "incrementStyle_971d4"
+        ],
+        "hoverDivStyle": [
+          "hoverDivStyle_c4380"
         ]
       }
     },
     "file:///C:/Users/Reece/Documents/Projects/tinyTools/package/signals.ts": {
-      "mtimeMs": 1792506681792,
+      "mtimeMs": 1792560893148,
       "externalImports": [],
       "handlers": {
         "#bundle": [
-          "signals_83038"
+          "signals_08b4f"
         ]
       },
       "styles": {}

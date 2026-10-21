@@ -32,6 +32,13 @@ const routeStyles = new tiny.Styles(import.meta.url, {
       flex: 1;
     }
   `,
+  hoverDivStyle: tiny.css`
+    padding: 16px;
+    border: 1px solid black;
+    margin: 8px 0;
+    --hue: attr(data-hue type(<angle>), 180deg);
+    background: oklch(70% 90% var(--hue));
+  `,
 });
 
 const routeHandlers = new tiny.Handlers(import.meta.url, async () => {
@@ -57,7 +64,7 @@ const routeHandlers = new tiny.Handlers(import.meta.url, async () => {
     ) {
       signal.count.value = Number(this.value || 0);
     },
-    updateIsEven: function (
+    adjustCount: function (
       this: HTMLInputElement,
     ) {
       if (this.checked && signal.isEven.value === false) {
@@ -67,21 +74,27 @@ const routeHandlers = new tiny.Handlers(import.meta.url, async () => {
         signal.count.value -= 1;
       }
     },
-    updateCheckbox: function (
-      this: HTMLInputElement,
+    writeTime: function (
+      this: HTMLDivElement,
     ) {
-      this.checked = signal.isEven.value;
+      this.textContent =
+        `Hovered at ${Temporal.Now.plainDateTimeISO().toString()}`;
     },
   };
 });
 
 const routeSignals = new tiny.Signals(
   import.meta.url,
-  ({ Signal, Computed }) => {
+  ({ Signal, Computed, Trigger }) => {
     const count = new Signal(5);
+    const hovered = new Trigger();
     return {
       count,
-      isEven: new Computed(() => count.value % 2 === 0),
+      isEven: new Computed(() => count.value % 2 === 0, [count]),
+      hovered,
+      hue: new Computed(() => (Math.random() * 360).toFixed(0) + "deg", [
+        hovered,
+      ]),
     };
   },
 );
@@ -143,20 +156,9 @@ app.get("/", async (c) => {
         Is count even?
         <input
           type="checkbox"
-          name="is-even"
-          value={signal.count}
-          checked={signal.isEven.initial}
-          onChange={fn.updateIsEven}
-          onSignal={fn.updateCheckbox}
-        />
-      </label>
-      <label>
-        Is count even? (better version)
-        <input
-          type="checkbox"
           name="is-even-better"
           checked={signal.isEven}
-          onChange={fn.updateIsEven}
+          onChange={fn.adjustCount}
         />
       </label>
       <increment-count class={styled.incrementStyle}>
@@ -165,6 +167,19 @@ app.get("/", async (c) => {
         <IncrementButton value="+1" />
         <IncrementButton value="+10" />
       </increment-count>
+
+      <div class={styled.hoverDivStyle} onMouseOver={signal.hovered}>
+        Hover over me
+      </div>
+      <div
+        class={styled.hoverDivStyle}
+        data-hue={signal.hue}
+      >
+        And watch my background color change
+      </div>
+      <div onConnect={signal.hovered} onSignal={fn.writeTime}>
+        And I'll set the time
+      </div>
     </>,
   );
 });
