@@ -12,6 +12,7 @@
   "compilerOptions": {
     "jsx": "precompile",
     "jsxImportSource": "tinytools",
+    "jsxPrecompileSkipElements": ["input", "option"],
     "lib": [
       "deno.window",
       "deno.unstable",

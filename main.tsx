@@ -47,19 +47,41 @@ const routeHandlers = new tiny.Handlers(import.meta.url, async () => {
       this.textContent =
         `clicked at ${Temporal.Now.plainDateTimeISO().toString()}`;
     },
-    updateCount: function (
+    incrementCount: function (
       this: HTMLButtonElement,
     ) {
       signal.count.value += Number(this.value || 0);
+    },
+    updateCount: function (
+      this: HTMLInputElement,
+    ) {
+      signal.count.value = Number(this.value || 0);
+    },
+    updateIsEven: function (
+      this: HTMLInputElement,
+    ) {
+      if (this.checked && signal.isEven.value === false) {
+        signal.count.value += 1;
+      }
+      if (!this.checked && signal.isEven.value === true) {
+        signal.count.value -= 1;
+      }
+    },
+    updateCheckbox: function (
+      this: HTMLInputElement,
+    ) {
+      this.checked = signal.isEven.value;
     },
   };
 });
 
 const routeSignals = new tiny.Signals(
   import.meta.url,
-  ({ Signal }) => {
+  ({ Signal, Computed }) => {
+    const count = new Signal(5);
     return {
-      count: new Signal(0),
+      count,
+      isEven: new Computed(() => count.value % 2 === 0),
     };
   },
 );
@@ -87,7 +109,7 @@ const IncrementButton = async (props: { value: number | string }) => {
       type="button"
       data-hue={randomHue()}
       value={props.value}
-      onClick={fn.updateCount}
+      onClick={fn.incrementCount}
     >
       {props.value}
     </button>
@@ -111,6 +133,32 @@ app.get("/", async (c) => {
         {`Loaded at ${Temporal.Now.plainDateTimeISO().toString()}`}
       </button>
       <display-count class={styled.countStyle}>{signal.count}</display-count>
+      <input
+        type="number"
+        name="count"
+        value={signal.count}
+        onInput={fn.updateCount}
+      />
+      <label>
+        Is count even?
+        <input
+          type="checkbox"
+          name="is-even"
+          value={signal.count}
+          checked={signal.isEven.initial}
+          onChange={fn.updateIsEven}
+          onSignal={fn.updateCheckbox}
+        />
+      </label>
+      <label>
+        Is count even? (better version)
+        <input
+          type="checkbox"
+          name="is-even-better"
+          checked={signal.isEven}
+          onChange={fn.updateIsEven}
+        />
+      </label>
       <increment-count class={styled.incrementStyle}>
         <IncrementButton value={-10} />
         <IncrementButton value={-1} />
