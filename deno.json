@@ -1,9 +1,8 @@
 {
   "tasks": {
-    "dev": "deno run --watch -A serve.ts --lazy",
-    "build": "deno run -A build.ts",
-    "serve": "deno run -A serve.ts",
-    "fresh": "deno run -A fresh.ts && deno task serve"
+    "dev": "deno run --watch -A serve.ts --none",
+    "serve": "deno run -A serve.ts --none",
+    "measure": "deno run -A measure.ts --none"
   },
   "imports": {
     "tinytools": "jsr:@tinytools/hono-tools@0.1.40",

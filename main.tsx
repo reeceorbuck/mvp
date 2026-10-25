@@ -1,5 +1,8 @@
 import { Hono } from "hono";
 import { tiny } from "tinytools";
+import { compareApp } from "./compare.tsx";
+
+performance.mark("startup:importsComplete");
 
 const layoutStyles = new tiny.Styles(import.meta.url, {
   headerStyle: tiny.css`
@@ -100,6 +103,7 @@ const routeSignals = new tiny.Signals(
 );
 
 const app = new Hono()
+  .route("/compare", compareApp)
   .use(...tiny.middleware.core())
   .use(tiny.middleware.layout(async ({ children }, _c) => {
     const { styled } = await tiny.imports(layoutStyles);
@@ -183,5 +187,7 @@ app.get("/", async (c) => {
     </>,
   );
 });
+
+performance.mark("startup:routesRegistered");
 
 export { app };
