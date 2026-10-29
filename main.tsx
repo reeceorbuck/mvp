@@ -4,14 +4,14 @@ import { compareApp } from "./compare.tsx";
 
 performance.mark("startup:importsComplete");
 
-const layoutStyles = new tiny.Styles(import.meta.url, {
+const layoutStyles = new tiny.Styles({
   headerStyle: tiny.css`
     background: oklch(70% 90% 200);
     color: white;
   `,
 });
 
-const routeStyles = new tiny.Styles(import.meta.url, {
+const routeStyles = new tiny.Styles({
   buttonStyle: tiny.css`
     --hue: attr(data-hue type(<angle>), 180deg);
     color: oklch(70% 90% var(--hue));
@@ -44,7 +44,7 @@ const routeStyles = new tiny.Styles(import.meta.url, {
   `,
 });
 
-const routeHandlers = new tiny.Handlers(import.meta.url, async () => {
+const routeHandlers = new tiny.Handlers(async () => {
   const { signal } = await tiny.imports(routeSignals);
   return {
     clickHandler: function (
@@ -87,7 +87,6 @@ const routeHandlers = new tiny.Handlers(import.meta.url, async () => {
 });
 
 const routeSignals = new tiny.Signals(
-  import.meta.url,
   ({ Signal, Computed, Trigger }) => {
     const count = new Signal(5);
     const hovered = new Trigger();
