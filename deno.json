@@ -5,13 +5,16 @@
     "measure": "deno run -A measure.ts --none"
   },
   "imports": {
-    "tinytools": "jsr:@tinytools/hono-tools@0.1.40",
-    "hono": "jsr:@hono/hono@^4.13.13"
+    "tinytools": "jsr:@tinytools/hono-tools@0.1.43",
+    "hono": "jsr:@hono/hono@^4.13.14"
   },
   "compilerOptions": {
     "jsx": "precompile",
     "jsxImportSource": "tinytools",
-    "jsxPrecompileSkipElements": ["input", "option"],
+    "jsxPrecompileSkipElements": [
+      "input",
+      "option"
+    ],
     "lib": [
       "deno.window",
       "deno.unstable",
