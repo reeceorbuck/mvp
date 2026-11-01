@@ -4,70 +4,66 @@
  * fetches every route and totals what the browser downloads.
  */
 import { Hono } from "hono";
-import { tiny } from "tinytools";
+import { optimized } from "tinytools";
 
-const styles = new tiny.Styles(import.meta.url, {
+const tiny = optimized(import.meta.url);
+
+const styles = new tiny.Styles({
   box: tiny.css`
     padding: 8px;
     border: 1px solid black;
   `,
 });
 
-const clickHandlers = new tiny.Handlers(import.meta.url, {
+const clickHandlers = new tiny.Handlers({
   greet(this: HTMLButtonElement) {
     this.textContent = "Clicked";
   },
 });
 
-const lifecycleHandlers = new tiny.Handlers(import.meta.url, {
+const lifecycleHandlers = new tiny.Handlers({
   ready(this: HTMLElement) {
     this.textContent = "Connected";
   },
 });
 
-const countSignals = new tiny.Signals(import.meta.url, ({ Signal }) => ({
+const countSignals = new tiny.Signals(({ Signal }) => ({
   count: new Signal(0),
 }));
 
-const nameSignals = new tiny.Signals(import.meta.url, ({ Signal }) => ({
+const nameSignals = new tiny.Signals(({ Signal }) => ({
   name: new Signal("world"),
   agreed: new Signal(false),
 }));
 
-const hueSignals = new tiny.Signals(import.meta.url, ({ Signal }) => ({
+const hueSignals = new tiny.Signals(({ Signal }) => ({
   hue: new Signal("120deg"),
 }));
 
-const computedSignals = new tiny.Signals(
-  import.meta.url,
-  ({ Signal, Computed }) => {
-    const count = new Signal(1);
-    return { count, doubled: new Computed(() => count.value * 2) };
-  },
-);
+const computedSignals = new tiny.Signals(({ Signal, Computed }) => {
+  const count = new Signal(1);
+  return { count, doubled: new Computed(() => count.value * 2) };
+});
 
-const triggerSignals = new tiny.Signals(import.meta.url, ({ Trigger }) => ({
+const triggerSignals = new tiny.Signals(({ Trigger }) => ({
   ping: new Trigger(),
 }));
 
-const triggerHandlers = new tiny.Handlers(import.meta.url, {
+const triggerHandlers = new tiny.Handlers({
   stamp(this: HTMLElement) {
     this.textContent = `Pinged at ${new Date().toISOString()}`;
   },
 });
 
-const instanceSignals = new tiny.Signals(
-  import.meta.url,
-  ({ Signal, perInstance }) => ({
-    ...perInstance(() => ({ clicks: new Signal(0) })),
-  }),
-);
+const instanceSignals = new tiny.Signals(({ Signal, perInstance }) => ({
+  ...perInstance(() => ({ clicks: new Signal(0) })),
+}));
 
-const rowTemplates = new tiny.Templates(import.meta.url, {
+const rowTemplates = new tiny.Templates({
   row: () => <li>$[label]</li>,
 });
 
-const templateHandlers = new tiny.Handlers(import.meta.url, async () => {
+const templateHandlers = new tiny.Handlers(async () => {
   const { template } = await tiny.imports(rowTemplates);
   return {
     addRow(this: HTMLButtonElement) {
