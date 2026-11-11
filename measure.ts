@@ -63,10 +63,11 @@ async function measure(route: string): Promise<Measurement> {
       /<link[^>]*rel="modulepreload"[^>]*href="([^"]+)"/g,
     )
   ) scripts.add(match[1]);
-  // Bundles named by event attributes load on first use.
+  // Bundles named by event attributes load on first use, including those of
+  // the signals a reference is given (`signals_1a2b3.add(Counter_4c5d6.count)`).
   for (const match of html.matchAll(/tt-handler-[a-z]+="([^"]+)"/g)) {
-    for (const reference of match[1].split(" ")) {
-      scripts.add(`/handlers/${reference.split(".")[0]}.js`);
+    for (const bundle of match[1].matchAll(/(\w+)\.[$\w]+/g)) {
+      scripts.add(`/handlers/${bundle[1]}.js`);
     }
   }
   const js: Record<string, number> = {};

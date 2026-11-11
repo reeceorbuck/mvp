@@ -171,7 +171,7 @@ app.get("/", async (c) => {
         <IncrementButton value="+10" />
       </increment-count>
 
-      <div class={styled.hoverDivStyle} onMouseOver={signal.hovered}>
+      <div class={styled.hoverDivStyle} onMouseOver={fn.signals.fire(signal.hovered)}>
         Hover over me
       </div>
       <div
@@ -180,7 +180,7 @@ app.get("/", async (c) => {
       >
         And watch my background color change
       </div>
-      <div onConnect={signal.hovered} onSignal={fn.writeTime}>
+      <div onConnect={fn.signals.subscribe(signal.hovered)} onSignal={fn.writeTime}>
         And I'll set the time
       </div>
     </>,
