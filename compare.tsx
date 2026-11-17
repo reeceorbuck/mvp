@@ -55,9 +55,9 @@ const triggerHandlers = new tiny.Handlers({
   },
 });
 
-const instanceSignals = new tiny.Signals(({ Signal, Scope }) =>
-  new Scope(() => ({ clicks: new Signal(0) }))
-);
+const instanceSignals = new tiny.Signals(({ Signal }) => ({
+  clicks: new Signal(0),
+}));
 
 const rowTemplates = new tiny.Templates({
   row: () => <li>$[label]</li>,
@@ -97,7 +97,9 @@ export const compareApp = new Hono()
     const { fn, signal } = await tiny.imports(countSignals);
     return c.render(
       <>
-        <button type="button" value={1} onClick={fn.signals.add(signal.count)}>Count</button>
+        <button type="button" value={1} onClick={fn.signals.add(signal.count)}>
+          Count
+        </button>
         <p>Clicked {signal.count} times</p>
       </>,
     );
@@ -106,7 +108,11 @@ export const compareApp = new Hono()
     const { fn, signal } = await tiny.imports(nameSignals);
     return c.render(
       <>
-        <input name="name" value={signal.name} onInput={fn.signals.update(signal.name)} />
+        <input
+          name="name"
+          value={signal.name}
+          onInput={fn.signals.update(signal.name)}
+        />
         <input
           type="checkbox"
           checked={signal.agreed}
@@ -120,7 +126,11 @@ export const compareApp = new Hono()
     const { fn, signal } = await tiny.imports(hueSignals);
     return c.render(
       <>
-        <input name="hue" value={signal.hue} onInput={fn.signals.update(signal.hue)} />
+        <input
+          name="hue"
+          value={signal.hue}
+          onInput={fn.signals.update(signal.hue)}
+        />
         <p data-hue={signal.hue}>Hue</p>
       </>,
     );
@@ -129,7 +139,9 @@ export const compareApp = new Hono()
     const { fn, signal } = await tiny.imports(computedSignals);
     return c.render(
       <>
-        <button type="button" value={1} onClick={fn.signals.add(signal.count)}>Add</button>
+        <button type="button" value={1} onClick={fn.signals.add(signal.count)}>
+          Add
+        </button>
         <p>Doubled: {signal.doubled}</p>
       </>,
     );
@@ -138,24 +150,32 @@ export const compareApp = new Hono()
     const { fn, signal } = await tiny.imports(triggerSignals, triggerHandlers);
     return c.render(
       <>
-        <button type="button" onClick={fn.signals.fire(signal.ping)}>Ping</button>
-        <p onConnect={fn.signals.subscribe(signal.ping)} onSignal={fn.stamp}>Not pinged</p>
+        <button type="button" onClick={fn.signals.fire(signal.ping)}>
+          Ping
+        </button>
+        <p onConnect={fn.signals.subscribe(signal.ping)} onSignal={fn.stamp}>
+          Not pinged
+        </p>
       </>,
     );
   })
   .get("/per-instance", async (c) => {
-    const { fn, signal, signalRoot } = await tiny.imports(instanceSignals);
+    const { fn, signal, SignalRoot } = await tiny.imports(instanceSignals);
     return c.render(
       <>
         {[1, 2].map(() => (
-          <signalRoot.self>
+          <SignalRoot>
             <click-counter>
-              <button type="button" value={1} onClick={fn.signals.add(signal.clicks)}>
+              <button
+                type="button"
+                value={1}
+                onClick={fn.signals.add(signal.clicks)}
+              >
                 Click
               </button>
               <span>{signal.clicks}</span>
             </click-counter>
-          </signalRoot.self>
+          </SignalRoot>
         ))}
       </>,
     );
@@ -184,10 +204,16 @@ export const compareApp = new Hono()
         <p class={styled.box}>Styled</p>
         <button type="button" onClick={fn.greet}>Click me</button>
         <ready-box onConnect={fn.ready}>Waiting</ready-box>
-        <button type="button" value={1} onClick={fn.signals.add(signal.count)}>Add</button>
+        <button type="button" value={1} onClick={fn.signals.add(signal.count)}>
+          Add
+        </button>
         <p>Doubled: {signal.doubled}</p>
-        <button type="button" onClick={fn.signals.fire(signal.ping)}>Ping</button>
-        <p onConnect={fn.signals.subscribe(signal.ping)} onSignal={fn.stamp}>Not pinged</p>
+        <button type="button" onClick={fn.signals.fire(signal.ping)}>
+          Ping
+        </button>
+        <p onConnect={fn.signals.subscribe(signal.ping)} onSignal={fn.stamp}>
+          Not pinged
+        </p>
         <button type="button" onClick={fn.addRow}>Add row</button>
         <ul></ul>
       </>,

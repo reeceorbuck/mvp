@@ -35,10 +35,20 @@ async function fetchText(path: string): Promise<string> {
 }
 
 /** Module specifiers a script imports, statically or with a literal `import()`. */
-function importsOf(code: string, from: string): string[] {
+function importsOf(
+  code: string,
+  from: string,
+  hasRoot: boolean,
+): string[] {
   const specifiers = [
     ...code.matchAll(/(?:\bfrom|\bimport)\s*\(?\s*["']([^"']+\.js)["']/g),
-  ].map((match) => match[1]);
+  ]
+    // A collection imports the per-root runtime lazily, the first time the
+    // page has a root of any collection, so it counts only on such a page.
+    .filter((match) =>
+      hasRoot || !match[0].includes("(") || !match[1].includes("tt-instance_")
+    )
+    .map((match) => match[1]);
   // A runtime path held in a variable so bundlers leave it alone.
   for (const match of code.matchAll(/=\s*"(\/[^"]+\.js)";/g)) {
     specifiers.push(match[1]);
@@ -50,6 +60,7 @@ function importsOf(code: string, from: string): string[] {
 
 async function measure(route: string): Promise<Measurement> {
   const html = await fetchText(route);
+  const hasRoot = /\stt-(instance|link)=/.test(html);
   const inline = [
     ...html.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g),
   ]
@@ -75,7 +86,9 @@ async function measure(route: string): Promise<Measurement> {
     if (path in js) continue;
     const code = await fetchText(path);
     js[path] = size(code);
-    for (const imported of importsOf(code, path)) scripts.add(imported);
+    for (const imported of importsOf(code, path, hasRoot)) {
+      scripts.add(imported);
+    }
   }
   const css: Record<string, number> = {};
   for (
