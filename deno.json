@@ -5,8 +5,8 @@
     "measure": "deno run -A measure.ts --none"
   },
   "imports": {
-    "tinytools": "jsr:@tinytools/hono-tools@0.1.50",
-    "hono": "jsr:@hono/hono@^4.13.17"
+    "tinytools": "jsr:@tinytools/hono-tools@0.1.52",
+    "hono": "jsr:@hono/hono@^4.13.18"
   },
   "compilerOptions": {
     "jsx": "precompile",
